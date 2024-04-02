@@ -1,0 +1,42 @@
+<div class="container my-container pb-5" *ngIf="contentLoading">
+  <app-loading />
+</div>
+<div class="container my-container pb-5" *ngIf="showMenu && !contentLoading">
+  <h5 class="mb-3">Cześć, {{ user.name }}!</h5>
+  <hr />
+  <app-lesson-tile *ngIf="nextLesson" [lesson]="nextLesson" [showDate]="true" />
+  <hr *ngIf="nextLesson" />
+  <div class="text-center">
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="onNavigateSchedule()"
+    >
+      <i class="bi bi-calendar2-fill"></i> Harmonogram
+    </button>
+  </div>
+  <div class="text-center">
+    <button
+      type="button"
+      class="btn btn-primary mt-3"
+      (click)="onNavigateStudentsList()"
+    >
+      <i class="bi bi-person-lines-fill"></i> Lista uczniów
+    </button>
+  </div>
+  <div class="text-center">
+    <button
+      type="button"
+      class="btn btn-primary mt-3"
+      (click)="onNavigateProfile()"
+    >
+      <i class="bi bi-person-fill"></i> Profil
+    </button>
+  </div>
+  <div class="text-center">
+    <button type="button" class="btn btn-primary mt-5" (click)="onLogout()">
+      <i class="bi bi-box-arrow-left"></i> Wyloguj
+    </button>
+  </div>
+</div>
+<router-outlet *ngIf="!contentLoading" />

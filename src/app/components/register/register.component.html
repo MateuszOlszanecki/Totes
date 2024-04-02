@@ -1,0 +1,75 @@
+<div class="container my-container pb-5">
+  <h5 class="mb-3">Zarejestruj się</h5>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="name"
+        autocomplete="off"
+        formControlName="name"
+      />
+      <label for="name">Nazwa użytkownika:</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        placeholder="email"
+        autocomplete="off"
+        formControlName="email"
+      />
+      <label for="email">Adres e-mail:</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        [type]="hidePassword ? 'password' : 'text'"
+        class="form-control eye-input"
+        id="password"
+        placeholder="password"
+        autocomplete="off"
+        formControlName="password"
+      />
+      <label for="password">Hasło:</label>
+      <button
+        type="button"
+        class="password-icon"
+        (click)="hidePassword = !hidePassword"
+      >
+        <i class="bi {{ hidePassword ? 'bi-eye' : 'bi-eye-slash' }}"></i>
+      </button>
+    </div>
+    <div class="form-floating mb-5">
+      <input
+        [type]="hideConfirmPassword ? 'password' : 'text'"
+        class="form-control eye-input"
+        id="confirmPassword"
+        placeholder="confirmPassword"
+        autocomplete="off"
+        formControlName="confirmPassword"
+      />
+      <label for="confirmPassword">Powtórz hasło:</label>
+      <button
+        type="button"
+        class="password-icon"
+        (click)="hideConfirmPassword = !hideConfirmPassword"
+      >
+        <i class="bi {{ hideConfirmPassword ? 'bi-eye' : 'bi-eye-slash' }}"></i>
+      </button>
+    </div>
+    <div class="text-center">
+      <button
+        type="submit"
+        class="btn btn-success mt-3"
+        [disabled]="!registerForm.valid || signingIn"
+      >
+        <app-loading-button
+          text="Zarejestruj się"
+          [spinnerVisible]="signingIn"
+        />
+      </button>
+    </div>
+  </form>
+</div>

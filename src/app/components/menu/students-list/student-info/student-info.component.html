@@ -1,0 +1,49 @@
+<div class="container my-container pb-5" *ngIf="student">
+  <h5 class="mb-3">Dane ucznia</h5>
+  <hr class="mb-5" />
+  <h5>Imię{{ student.surname ? " i nazwisko" : "" }}:</h5>
+  <h3 class="mb-5 overflow-output-area">
+    {{ student.name }} {{ student.surname }}
+  </h3>
+  <h5>Adres:</h5>
+  <h3 class="mb-5 overflow-output-area">{{ student.address }}</h3>
+  <ng-container *ngIf="student.telephoneNumber">
+    <h5>Numer telefonu:</h5>
+    <h3 class="mb-5 overflow-output-area">
+      {{ student.telephoneNumber }}
+    </h3></ng-container
+  >
+  <ng-container *ngIf="student.schoolClass">
+    <h5>Klasa:</h5>
+    <h3 class="mb-5 overflow-output-area">
+      {{ student.schoolClass }}
+    </h3></ng-container
+  >
+  <ng-container *ngIf="student.furtherInfo">
+    <h5>Dodatkowe informacje:</h5>
+    <h3 class="mb-5 overflow-output-area">{{ student.furtherInfo }}</h3>
+  </ng-container>
+  <hr />
+  <div class="text-center">
+    <button
+      type="button"
+      class="btn btn-success mb-3"
+      (click)="onNavigateEditStudent()"
+    >
+      Edytuj
+    </button>
+  </div>
+  <div class="text-center">
+    <button
+      type="button"
+      class="btn btn-danger"
+      (click)="onDeleteStudent()"
+      [disabled]="deleting"
+    >
+      <app-loading-button
+        [text]="!deletingButtonPressed ? 'Usuń' : 'Potwierdź usunięcie'"
+        [spinnerVisible]="deleting"
+      />
+    </button>
+  </div>
+</div>

@@ -1,0 +1,73 @@
+<div class="container my-container pb-5">
+  <h5 class="mb-3">Zmień hasło</h5>
+  <form [formGroup]="editProfileForm" (ngSubmit)="onSubmit()">
+    <div class="form-floating mb-3">
+      <input
+        [type]="hideCurrentPassword ? 'password' : 'text'"
+        class="form-control eye-input"
+        id="currentPassword"
+        placeholder="currentPassword"
+        autocomplete="off"
+        formControlName="currentPassword"
+      />
+      <label for="currentPassword">Aktualne hasło:</label>
+      <button
+        type="button"
+        class="password-icon"
+        (click)="hideCurrentPassword = !hideCurrentPassword"
+      >
+        <i class="bi {{ hideCurrentPassword ? 'bi-eye' : 'bi-eye-slash' }}"></i>
+      </button>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input
+        [type]="hideNewPassword ? 'password' : 'text'"
+        class="form-control eye-input"
+        id="password"
+        placeholder="password"
+        autocomplete="off"
+        formControlName="password"
+      />
+      <label for="password">Nowe hasło:</label>
+      <button
+        type="button"
+        class="password-icon"
+        (click)="hideNewPassword = !hideNewPassword"
+      >
+        <i class="bi {{ hideNewPassword ? 'bi-eye' : 'bi-eye-slash' }}"></i>
+      </button>
+    </div>
+
+    <div class="form-floating mb-5">
+      <input
+        [type]="hideRepeatNewPassword ? 'password' : 'text'"
+        class="form-control eye-input"
+        id="confirmPassword"
+        placeholder="confirmPassword"
+        autocomplete="off"
+        formControlName="confirmPassword"
+      />
+      <label for="confirmPassword">Powtórz nowe hasło:</label>
+      <button
+        type="button"
+        class="password-icon"
+        (click)="hideRepeatNewPassword = !hideRepeatNewPassword"
+      >
+        <i
+          class="bi {{ hideRepeatNewPassword ? 'bi-eye' : 'bi-eye-slash' }}"
+        ></i>
+      </button>
+    </div>
+
+    <div class="text-center">
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="!editProfileForm.valid || editing"
+      >
+        <app-loading-button text="Zmień hasło" [spinnerVisible]="editing" />
+      </button>
+    </div>
+  </form>
+</div>

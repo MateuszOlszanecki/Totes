@@ -1,0 +1,104 @@
+<div class="container my-container pb-5" *ngIf="lesson || !editMode">
+  <h5 class="mb-3">{{ editMode ? "Edytuj" : "Dodaj" }} zajęcia</h5>
+  <form [formGroup]="lessonForm" (ngSubmit)="onSubmit()">
+    <div class="form-floating mb-3">
+      <select
+        class="form-select"
+        id="studentId"
+        placeholder="studentId"
+        formControlName="studentId"
+      >
+        <option *ngFor="let student of studentsList" [ngValue]="student.id">
+          {{ student.name }}{{ student.surname ? " " + student.surname : "" }},
+          {{ student.address }}
+        </option>
+      </select>
+      <label for="studentId">Wybierz ucznia:</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="date"
+        class="form-control"
+        id="date"
+        placeholder="date"
+        autocomplete="off"
+        formControlName="date"
+        [min]="minDate"
+      />
+      <label for="date">Podaj datę:</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="time"
+        class="form-control"
+        id="time"
+        placeholder="time"
+        autocomplete="off"
+        formControlName="time"
+      />
+      <label for="time">Podaj godzinę:</label>
+    </div>
+    <div class="card mb-3 p-2">
+      <div
+        class="mb-1"
+        style="color: #6e7174; font-size: 13.6px; padding-left: 4.6px"
+      >
+        Czas trwania:
+      </div>
+      <div class="px-1 pb-1 row g-3 align-items-center">
+        <div class="col-6">
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="durationHours"
+              placeholder="durationHours"
+              formControlName="durationHours"
+            >
+              <option *ngFor="let hour of hours" [ngValue]="hour">
+                {{ hour }}
+              </option>
+            </select>
+            <label for="durationHours">Godziny:</label>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-floating">
+            <select
+              class="form-select"
+              id="durationMinutes"
+              placeholder="durationMinutes"
+              formControlName="durationMinutes"
+            >
+              <option *ngFor="let minute of minutes" [ngValue]="minute">
+                {{ minute }}
+              </option>
+            </select>
+            <label for="durationMinutes">Minuty:</label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-floating mb-5">
+      <textarea
+        class="form-control textarea-setup"
+        id="note"
+        placeholder="note"
+        formControlName="note"
+      ></textarea>
+      <label for="note">Notatka:</label>
+    </div>
+    <div class="text-center">
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="!lessonForm.valid || submittingForm || !lessonForm.dirty"
+      >
+        <app-loading-button
+          text="Zatwierdź"
+          [spinnerVisible]="submittingForm"
+        />
+      </button>
+    </div>
+  </form>
+</div>

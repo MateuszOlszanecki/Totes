@@ -1,0 +1,33 @@
+<div class="container my-container pb-5">
+  <h5 class="mb-3">Potwierdź usunięcie konta</h5>
+  <form [formGroup]="deleteProfileForm" (ngSubmit)="onSubmit()">
+    <div class="form-floating mb-5">
+      <input
+        [type]="hidePassword ? 'password' : 'text'"
+        class="form-control eye-input"
+        id="password"
+        placeholder="password"
+        autocomplete="off"
+        formControlName="password"
+      />
+      <label for="password">Hasło:</label>
+      <button
+        type="button"
+        class="password-icon"
+        (click)="hidePassword = !hidePassword"
+      >
+        <i class="bi {{ hidePassword ? 'bi-eye' : 'bi-eye-slash' }}"></i>
+      </button>
+    </div>
+
+    <div class="text-center">
+      <button
+        type="submit"
+        class="btn btn-danger"
+        [disabled]="!deleteProfileForm.valid || deleting"
+      >
+        <app-loading-button text="Usuń konto" [spinnerVisible]="deleting" />
+      </button>
+    </div>
+  </form>
+</div>

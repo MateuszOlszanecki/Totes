@@ -1,0 +1,53 @@
+<div class="container my-container pb-5" *ngIf="lesson">
+  <h5 class="mb-3">Informacje o zajęciach</h5>
+
+  <hr />
+  <div class="text-center">
+    <button
+      type="button"
+      class="btn btn-primary"
+      (click)="onNavigateStudentInfo()"
+    >
+      Zobacz profil ucznia
+    </button>
+  </div>
+  <hr class="mb-5" />
+  <h5>Imię{{ student.surname ? " i nazwisko " : " " }}ucznia:</h5>
+  <h3 class="mb-5 overflow-output-area">
+    {{ student.name }} {{ student.surname }}
+  </h3>
+  <h5>Data zajęć:</h5>
+  <h3 class="mb-5 overflow-output-area">
+    {{ lesson.getFormattedLessonDate() }}
+  </h3>
+  <h5>Przedział czasowy:</h5>
+  <h3 class="mb-5 overflow-output-area">
+    {{ lesson.time }} - {{ lesson.calculateEndTime() }}
+  </h3>
+  <h5>Czas trwania zajęć:</h5>
+  <h3 class="mb-5 overflow-output-area">
+    {{ lesson.durationHours }}:{{ lesson.durationMinutes }}
+  </h3>
+  <ng-container *ngIf="lesson.note">
+    <h5>Notatka:</h5>
+    <h3 class="mb-5 overflow-output-area">{{ lesson.note }}</h3>
+  </ng-container>
+  <hr class="mt-5" />
+  <div class="text-center">
+    <button
+      type="button"
+      class="btn btn-success mb-3"
+      (click)="onNavigateEditLesson()"
+    >
+      Edytuj
+    </button>
+  </div>
+  <div class="text-center">
+    <button type="button" class="btn btn-danger" (click)="onDeleteLesson()">
+      <app-loading-button
+        [text]="!deletingButtonPressed ? 'Usuń' : 'Potwierdź usunięcie'"
+        [spinnerVisible]="deleting"
+      />
+    </button>
+  </div>
+</div>

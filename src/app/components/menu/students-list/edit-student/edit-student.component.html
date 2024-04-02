@@ -1,0 +1,81 @@
+<div class="container my-container pb-5" *ngIf="student || !editMode">
+  <h5 class="mb-3">{{ editMode ? "Edytuj" : "Dodaj" }} ucznia</h5>
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        placeholder="name"
+        autocomplete="off"
+        formControlName="name"
+      />
+      <label for="name">Imię:</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="surname"
+        placeholder="surname"
+        autocomplete="off"
+        formControlName="surname"
+      />
+      <label for="surname">Nazwisko:</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="address"
+        placeholder="address"
+        autocomplete="off"
+        formControlName="address"
+      />
+      <label for="address">Adres:</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="telephoneNumber"
+        placeholder="telephoneNumber"
+        autocomplete="off"
+        formControlName="telephoneNumber"
+      />
+      <label for="telephoneNumber">Numer telefonu:</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="schoolClass"
+        placeholder="schoolClass"
+        autocomplete="off"
+        formControlName="schoolClass"
+      />
+      <label for="schoolClass">Klasa:</label>
+    </div>
+    <div class="form-floating mb-5">
+      <textarea
+        class="form-control textarea-setup"
+        id="furtherInfo"
+        placeholder="furtherInfo"
+        formControlName="furtherInfo"
+      ></textarea>
+      <label for="furtherInfo">Dodatkowe informacje:</label>
+    </div>
+    <div class="text-center">
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="!studentForm.valid || submittingForm || !studentForm.dirty"
+      >
+        <app-loading-button
+          text="Zatwierdź"
+          [spinnerVisible]="submittingForm"
+        />
+      </button>
+    </div>
+  </form>
+</div>

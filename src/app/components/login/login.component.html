@@ -1,0 +1,60 @@
+<div class="container my-container pb-5">
+  <h5 class="mb-3">Zaloguj się</h5>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="email"
+        placeholder="email"
+        autocomplete="off"
+        formControlName="email"
+      />
+      <label for="email">Adres e-mail:</label>
+    </div>
+    <div class="form-floating mb-5">
+      <input
+        [type]="hidePassword ? 'password' : 'text'"
+        class="form-control eye-input"
+        id="password"
+        placeholder="password"
+        autocomplete="off"
+        formControlName="password"
+      />
+      <label for="password">Hasło:</label>
+      <button
+        type="button"
+        class="password-icon"
+        (click)="hidePassword = !hidePassword"
+      >
+        <i class="bi {{ hidePassword ? 'bi-eye' : 'bi-eye-slash' }}"></i>
+      </button>
+    </div>
+    <div class="text-center">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!loginForm.valid || loggingIn"
+      >
+        <app-loading-button text="Zaloguj się" [spinnerVisible]="loggingIn" />
+      </button>
+    </div>
+    <div class="text-center">
+      <button
+        type="button"
+        class="btn btn-link mt-3"
+        (click)="onNavigateResetPassword()"
+      >
+        Nie pamiętasz hasła?
+      </button>
+      <hr />
+      <button
+        type="button"
+        class="btn btn-success"
+        (click)="onNavigateRegister()"
+      >
+        Utwórz nowe konto
+      </button>
+    </div>
+  </form>
+</div>

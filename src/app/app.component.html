@@ -1,0 +1,24 @@
+<div class="my-background px-3">
+  <div
+    class="container my-container my-title pt-5 d-flex justify-content-between align-items-center"
+  >
+    <button class="btn btn-outline-dark back-icon" (click)="onGoBack()">
+      <i class="bi bi-arrow-left"></i>
+    </button>
+    <h1
+      class="text-center"
+      style="font-size: 64px; cursor: pointer"
+      (click)="onNavigateMenu()"
+    >
+      Totes
+    </h1>
+    <button class="btn btn-outline-dark back-icon" (click)="onGoForward()">
+      <i class="bi bi-arrow-right"></i>
+    </button>
+  </div>
+  <hr class="mb-5" />
+  <div class="container my-container pb-5" *ngIf="userLoading">
+    <app-loading />
+  </div>
+  <router-outlet *ngIf="!userLoading" />
+</div>

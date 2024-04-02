@@ -1,0 +1,16 @@
+<div class="container my-container pb-5">
+  <h5 class="mb-3"><i class="bi bi-person-lines-fill"></i> Lista uczniów</h5>
+  <hr />
+  <div class="text-center">
+    <button
+      type="button"
+      class="btn btn-success"
+      (click)="onNavigateAddStudent()"
+    >
+      Dodaj ucznia
+    </button>
+  </div>
+  <hr />
+  <h5 class="text-center" *ngIf="studentsList.length === 0">Brak uczniów.</h5>
+  <app-student-tile *ngFor="let student of studentsList" [student]="student" />
+</div>

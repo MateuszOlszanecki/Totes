@@ -1,0 +1,33 @@
+<div *ngIf="showDate" class="card mt-2 p-1 text-primary-emphasis my-tile">
+  <div class="card-body text-center">
+    <ng-container *ngIf="!lesson.isInProgress()">
+      <h5 style="margin: 0px" *ngIf="lesson.isDateToday()">
+        Następne zajęcia za
+        <span class="fixed-width-time">{{ timeUntilNextLessonStart }}</span>
+      </h5>
+      <h5 style="margin: 0px" *ngIf="!lesson.isDateToday()">
+        Następne zajęcia: {{ lesson.getFormattedLessonDate() }}
+      </h5></ng-container
+    >
+    <h5 style="margin: 0px" *ngIf="lesson.isInProgress()">Zajęcia w trakcie</h5>
+  </div>
+</div>
+
+<div
+  class="card mt-2 p-1 text-primary-emphasis my-tile"
+  style="cursor: pointer"
+  (click)="onNavigateLessonInfo()"
+>
+  <div class="card-body">
+    <div class="me-3" style="overflow-x: auto">
+      <h5 class="card-title">{{ student.name }} {{ student.surname }}</h5>
+      <h6 class="card-subtitle mb-2 text-body-secondary">
+        {{ student.address }}
+      </h6>
+    </div>
+    <hr />
+    <div class="text-end">
+      <h3>{{ lesson.time }} - {{ endTime }}</h3>
+    </div>
+  </div>
+</div>
