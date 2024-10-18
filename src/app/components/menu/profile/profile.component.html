@@ -3,7 +3,10 @@
   <hr class="mb-5" />
   <h5>Nazwa użytkownika:</h5>
   <h3 class="mb-5 overflow-output-area">{{ user.name }}</h3>
-  <h5>Adres e-mail:</h5>
+  <h5>
+    Adres e-mail
+    {{ (isEmailVerified$ | async) ? "(zweryfikowany)" : "(niezweryfikowany)" }}:
+  </h5>
   <h3 class="mb-5 overflow-output-area">{{ user.email }}</h3>
   <hr />
   <div class="text-center">

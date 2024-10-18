@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService } from '../../../services/profile.service';
 import { User } from '../../../models/user.model';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,11 +12,13 @@ import { User } from '../../../models/user.model';
 export class ProfileComponent implements OnInit, OnDestroy {
   user!: User;
   userChangedSubscription!: Subscription;
+  isEmailVerified$!: Observable<boolean>;
 
   constructor(
     private profileService: ProfileService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -26,6 +29,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       },
       error: (error) => console.log(error),
     });
+    this.isEmailVerified$ = this.authService.isEmailVerified();
   }
 
   onNavigateEditProfile(): void {
